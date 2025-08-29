@@ -12,12 +12,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ====== EDIT THESE WITH YOUR DETAILS ======
-FULL_NAME_LOWER = "john_doe"       # must be lowercase
-DOB_DDMMYYYY    = "17091999"       # ddmmyyyy
+FULL_NAME_LOWER = "john_doe"    
+DOB_DDMMYYYY    = "17091999"       
 EMAIL           = "john@xyz.com"
 ROLL_NUMBER     = "ABCD123"
-# ==========================================
+
 
 class RequestModel(BaseModel):
     data: List[Any] = Field(..., description="Array of strings/values to process")
@@ -41,7 +40,6 @@ def is_all_alpha(s: str) -> bool:
     return s.isalpha()
 
 def to_string(x: Any) -> str:
-    # The challenge examples pass everything as strings, but we convert safely.
     return str(x)
 
 def alternating_caps_reverse_concatenation(alphabet_items_upper: List[str]) -> str:
@@ -53,15 +51,15 @@ def alternating_caps_reverse_concatenation(alphabet_items_upper: List[str]) -> s
     - Reverse the entire string
     - Apply alternating caps starting with UPPER at index 0
     """
-    # 1) Uppercase per-letter and concatenate in input order
+ 
     letters = []
     for token in alphabet_items_upper:
         for ch in token:
             if ch.isalpha():
                 letters.append(ch.upper())
-    # 2) Reverse
+   
     letters.reverse()
-    # 3) Alternating caps starting with upper
+   
     out_chars = []
     for i, ch in enumerate(letters):
         out_chars.append(ch.upper() if i % 2 == 0 else ch.lower())
@@ -72,7 +70,7 @@ def bfhl(payload: RequestModel):
     try:
         raw_items = payload.data
     except Exception:
-        # Pydantic will have already validated, but just in case
+    
         raise HTTPException(status_code=400, detail="Invalid request format")
 
     even_numbers: List[str] = []
@@ -85,7 +83,7 @@ def bfhl(payload: RequestModel):
         s = to_string(item)
 
         if is_all_digits(s):
-            # Numbers are returned as strings
+           
             n = int(s)
             numeric_sum += n
             if n % 2 == 0:
@@ -93,15 +91,14 @@ def bfhl(payload: RequestModel):
             else:
                 odd_numbers.append(s)
         elif is_all_alpha(s):
-            # Entire token is alphabetic: store uppercase version
+          
             alphabets.append(s.upper())
         else:
-            # Mixed or contains any non-alphanumeric => special character
-            # e.g., "&", "-", "*", "a1", "12.3", "", " "
+          
             if s != "":
                 special_characters.append(s)
             else:
-                special_characters.append(s)  # keep empty strings if present
+                special_characters.append(s)  
 
     concat_string = alternating_caps_reverse_concatenation(alphabets)
 
