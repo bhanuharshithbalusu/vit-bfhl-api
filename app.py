@@ -12,10 +12,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-FULL_NAME_LOWER = "john_doe"    
-DOB_DDMMYYYY    = "17091999"       
-EMAIL           = "john@xyz.com"
-ROLL_NUMBER     = "ABCD123"
+FULL_NAME_LOWER = "balusu_bhanu_harshith"    
+DOB_DDMMYYYY    = "23092004"       
+EMAIL           = "bhanuharshith2004@gmail.com"
+ROLL_NUMBER     = "22BCE7363"
 
 
 class RequestModel(BaseModel):
