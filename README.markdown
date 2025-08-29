@@ -69,9 +69,9 @@ Send a POST request to `/bfhl` with the following JSON payload:
 ```json
 {
   "is_success": true,
-  "user_id": "john_doe_17091999",
-  "email": "john@xyz.com",
-  "roll_number": "ABCD123",
+  "user_id": "balusu_bhanu_harshith_23092004",
+  "email": "bhanuharshith2004@gmail.com",
+  "roll_number": "22BCE7363",
   "odd_numbers": ["1"],
   "even_numbers": ["2", "10"],
   "alphabets": ["A", "B", "XYZ"],
@@ -123,6 +123,6 @@ To deploy:
 
 ## Author
 
-- **Name**: John Doe
-- **Email**: john@xyz.com
-- **Roll Number**: ABCD123
+- **Name**: Balusu Bhanu Harshith
+- **Email**: bhanuharshith2004@gmail.com
+- **Roll Number**: 22BCE7363
